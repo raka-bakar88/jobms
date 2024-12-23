@@ -1,4 +1,4 @@
-This is an Company review application that uses Distributed/Microservices architecture that provides a functionality to review a company based on a job. The containeraized versions of this applications is available in [my docker hub account ](https://hub.docker.com/u/rkabkr). It uses Docker and Kubernetes to create and maintain the Images, Pods etc. 
+This is a Company Review application that leverages a Distributed/Microservices Architecture to allow users to review companies based on job experiences. The containerized  versions of this applications is available in [my docker hub account ](https://hub.docker.com/u/rkabkr). It employs Docker and Kubernetes for creating and managing images, pods, and other resources.
 
 Link to other Microservices repository:
 - [Reviewms](https://github.com/raka-bakar88/reviewms)
@@ -9,34 +9,71 @@ Link to other Microservices repository:
 
 
 **Techstack**
-- Spring Boot(Java 17)
-- PostgreSQL database
-- RabbitMQ
-- Spring Eureka
-- Kubernetes
-- Spring Config Server
-- Zipkin
-- Spring Actuator
-- OpenFeign
-- Java Persistence Api (JPA)
-- Lombok
-- Model Mapper
-- Maven
+- Backend Framework: Spring Boot (Java 17)
+- Database: PostgreSQL
+- Messaging System: RabbitMQ
+- Service Discovery: Spring Eureka
+- Orchestration & Scaling: Kubernetes
+- Configuration Management: Spring Config Server
+- Distributed Tracing: Zipkin
+- Health Monitoring: Spring Actuator
+- Service-to-Service Communication: OpenFeign
+- ORM Framework: Java Persistence API (JPA)
+- Utilities: Lombok, Model Mapper
+- Build Tool: Maven
 
   **Architecture**
 
   ![alt text](https://github.com/raka-bakar88/jobms/blob/main/microservice%20architecture%20diagram.png)
 
-This Job microservice works together with Company and Review Microservice application. Each Microservice has its own PostgresSQL database. The communication between Microservices is handled by Queues Messages tool using RabbitMQ. Configuration data for each Microservice is supported by Spring Config Server, so before each Microservice is run, they will fetch the config data from config server. Spring Cloud Eureka Server is used to discover, register and maintain status of all Microservices applications. Zipkin is also used to monitor the performance of all Microservices.
+This application follows a Microservices Architecture where each service operates independently with its own database and interacts with others through messaging and service discovery mechanisms.
+
+Microservices Overview:
+
+1. Job Microservice works in conjunction with Company and Review microservices.
+
+2. Each microservice uses its own PostgreSQL database.
+
+3. Communication between microservices is handled through RabbitMQ message queues.
+
+4. Configuration data for each microservice is managed by the Spring Config Server. Before launching, each service fetches its configuration settings.
+
+5. Spring Cloud Eureka Server is used for service discovery, registration, and health monitoring.
+
+6. Zipkin monitors and traces the performance of all microservices.
 
 **API Flow**
 
-There is only one API that is exposed to the clients with the help of API Gateway, which is the Review Api. When a client creates a Review, it will send the data to Review Microservice. Then, the review data will be saved into the review database, while at the same time, review microservice will send the data of job and company to its corresponding microservice and processed there.
+The application exposes only one API endpoint to the client via the API Gateway, simplifying client-side interactions.
+Review API Flow:
+
+1. A client submits a review through the Review API.
+
+2. The Review Microservice processes the data and saves it in the review database.
+
+3. Simultaneously, the review microservice sends related job and company data to their respective microservices for further processing.
 
 **Database**
 
-Each of the Microservice application uses its own PostgresSQL as the database. However, they are connected to each other. below is the Entity Relationship Diagram of the database
+Each microservice operates its own PostgreSQL database, ensuring data isolation and scalability.
+
+Database Design:
+Despite having separate databases, these microservices maintain logical connections to facilitate data consistency. The Entity Relationship Diagram (ERD) below illustrates the relationships among entities across database. below is the Entity Relationship Diagram of the database
 ![alt text](https://github.com/raka-bakar88/jobms/blob/main/JobApp%20ER%20Diagram.png)
+
+Key Features
+
+1. Scalability: Easily scales up or down with Kubernetes orchestration.
+
+2. Fault Tolerance: Ensures reliability through distributed architecture.
+
+3. Configuration Management: Centralized configuration storage via Spring Config Server.
+
+4. Monitoring and Tracing: Real-time performance monitoring with Zipkin.
+
+5. Service Discovery: Automatic service registration and lookup using Eureka.
+
+6. Message Queues: Reliable asynchronous communication through RabbitMQ
 
 **JOB Endpoints**
 ![alt text](https://github.com/raka-bakar88/jobms/blob/main/job%20ms%20api%20list.png)
