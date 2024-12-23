@@ -1,10 +1,19 @@
 This is an Company review application that uses Distributed/Microservices architecture that provides a functionality to review a company based on a job. The containeraized versions of this applications is available in [my docker hub account ](https://hub.docker.com/u/rkabkr). It uses Docker and Kubernetes to create and maintain the Images, Pods etc. 
 
+Link to other Microservices repository:
+- [Reviewms](https://github.com/raka-bakar88/reviewms)
+- [Companyms](https://github.com/raka-bakar88/companyms)
+- [Eureka Service Registration Server ms](https://github.com/raka-bakar88/eurekams)
+- [Config Server ms](https://github.com/raka-bakar88/configserverms)
+- [Api gateway ms](https://github.com/raka-bakar88/gatewayms)
+
+
 **Techstack**
 - Spring Boot(Java 17)
 - PostgreSQL database
 - RabbitMQ
 - Spring Eureka
+- Kubernetes
 - Spring Config Server
 - Zipkin
 - Spring Actuator
